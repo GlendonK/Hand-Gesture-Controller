@@ -18,6 +18,24 @@ while True:
             data = conn.recv(1024)
 
     print('received: ', data)
+    if data == 0:
+        key_press = 's'
+        print('S')
+    elif data == 1:
+        key_press = 'a'
+        print('A')
+    elif data == 2:
+        key_press = 'd'
+        print('D')
+    elif data == 3:
+        key_press = 'w'
+        print('W')
+    elif data == 4:
+        key_press = 'w, a, s, d'
+        print('W, A, S, D')
+
+
+
 
 
 
