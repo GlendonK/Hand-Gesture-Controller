@@ -1,3 +1,4 @@
+###### TESTING ONLY ##############
 ## this file runs on pi
 ## to classify the gesture
 

@@ -14,7 +14,7 @@ def read_the_data():
     orientation = sense.get_orientation()
     gyro = sense.get_gyroscope_raw()
 
-    while len(timeData) != 10:
+    while len(timeData) != 90:
         
         x = acc['x']
         y = acc['y']
@@ -43,9 +43,9 @@ def read_the_data():
 
         
 
-        
+    timeData = np.asarray(timeData)
 
-    return np.asarray(timeData)
+    return [timeData]
 
 
 

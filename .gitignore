@@ -1,0 +1,5 @@
+.DS_Store
+*.ipynb
+*.log
+__pycache__
+*.pkl

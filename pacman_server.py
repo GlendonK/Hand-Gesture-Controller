@@ -1,5 +1,6 @@
 ### this file runs on pc
-### THIS SERVER IS FOR myModel.pkl
+### THIS SERVER IS FOR pac_man.pkl model
+
 import socket
 import pickle
 import mlsocket
@@ -10,8 +11,8 @@ PORT = 5000
 
 # listen for the data to be sent over
 while True:
+    s.bind((HOST, PORT))
     with mlsocket.MLSocket() as s:
-        s.bind((HOST, PORT))
         s.listen()
         conn, address = s.accept()
 
@@ -48,7 +49,7 @@ while True:
     elif data == 4:
         #key_press = 'w, a, s, d'
         #key_map.press_uppercut()
-        print('W, A, S, D')
+        print('R')
 
 
 
