@@ -4,7 +4,7 @@ import socket
 import pickle
 import mlsocket
 import key_map as press
-
+"""
 HOST = '192.168.43.71'
 PORT = 5000
 
@@ -17,6 +17,7 @@ while True:
 
         with conn:
             data = conn.recv(1024)
+            
 
     print('received: ', data)
     if data == 0:
@@ -53,18 +54,26 @@ while True:
 
 
 
-'''
+"""
 try:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s1 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 except socket.error as err:
     print('socket.socket() {}'.format(err))
 
 port = 5000
-host_ip = '127.0.0.1'
+host_ip = '192.168.43.71'
+client_ip = '192.168.43.10'
+client_port = 3000
 s.bind((host_ip, port))
 s.listen()
 print('socket is listening')
+
+s1.connect((client_ip, client_port))
+
+def send(data):
+    s1.sendall(data)
 
 while True:
 
@@ -73,8 +82,8 @@ while True:
 
     data = connection.recv(1024)
 
-    if not data:
-        break
+    if data:
+        send(data)
+        
     print('received: ', data)
 s.close()
-'''
