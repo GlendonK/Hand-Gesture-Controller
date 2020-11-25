@@ -53,7 +53,6 @@
 float res[3];
 float conversion = 0.061F;
 
-void delay(int);
 
 int main(void)
 {

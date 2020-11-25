@@ -64,7 +64,6 @@ float res[3];
 float gres[3];
 float conversion = ACCEL_MG_LSB_2G;
 
-void delay(int);
 
 int main(void)
 {
