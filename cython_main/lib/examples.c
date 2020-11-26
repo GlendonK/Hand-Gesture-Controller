@@ -18,6 +18,8 @@
 
 #include "examples.h"
 
+
+
 /* im so sorry this have to be global to pass to python 
     and i cant free it as it needs to be read by other py functions*/
 float res[60];
@@ -162,7 +164,7 @@ float *dataReader(void)
             zHi = zHi - 65535;
         }
 
-        res[i] = (float)((accXTotal)*ACCEL_MG_LSB_2G / 1000);
+       res[i] = (float)((accXTotal)*ACCEL_MG_LSB_2G / 1000);
 
         printf("acc_x: %f\n", res[i]);
 
@@ -243,7 +245,7 @@ float *dataReader(void)
 
         printf("%d", i);
 
-        usleep(100000);
+       // usleep(2500);
 
     } //printf("\n THE res[i] IS: %f\n",res[60]);
 
@@ -253,3 +255,4 @@ float *dataReader(void)
 
     return res;
 }
+

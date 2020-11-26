@@ -10,7 +10,7 @@ import numpy as np
 HOST = '192.168.43.71'
 PORT = 5000
 data = 100
-"""
+
 def send_data(data):
   # send the array to server
   with mlsocket.MLSocket() as s:
@@ -20,9 +20,9 @@ def send_data(data):
     
 
 send_data(data)
-"""
 
-host_ip = '192.168.43.71'
+
+"""host_ip = '192.168.43.71'
 port = 5000
 
 
@@ -33,7 +33,7 @@ s.connect((host_ip, port))
 s.sendall(b'hello')
 
 s.close()
-
+"""
 
 #data = s.recv(1024)
 

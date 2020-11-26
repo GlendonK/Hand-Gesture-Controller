@@ -5,7 +5,7 @@ import pickle
 import C_py_interface
 
 def open_model_file():
-    filename = 'myModel.pkl'  #change model to change demo
+    filename = 'pac_man.pkl'  #change model to change demo
     with open(filename, 'rb') as file:
         model_loaded = pickle.load(file)
         return model_loaded
@@ -21,8 +21,9 @@ if __name__ == "__main__":
         #data = data_reader.read_the_data()
         data = C_py_interface.py_dataReader()
         #print("THE ARRAY IS: ", data)
+        #C_py_interface.py_led(data)
 
-        results = predict(data, model)
+        results = predict([data], model)
 
         client.send_data(results)
 

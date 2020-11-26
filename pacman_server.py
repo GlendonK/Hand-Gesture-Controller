@@ -1,6 +1,13 @@
 ### this file runs on pc
 ### THIS SERVER IS FOR pac_man.pkl model
 
+
+
+    
+
+
+
+
 import socket
 import pickle
 import mlsocket
@@ -9,15 +16,26 @@ import key_map as press
 HOST = '192.168.43.71'
 PORT = 5000
 
+HOST_TB = '192.168.43.10'
+PORT_TB = 1234
+
+
 # listen for the data to be sent over
 while True:
-    s.bind((HOST, PORT))
+    
     with mlsocket.MLSocket() as s:
+        s.bind((HOST, PORT))
+       
         s.listen()
         conn, address = s.accept()
 
         with conn:
             data = conn.recv(1024)
+        
+        with mlsocket.MLSocket() as s2:
+            s2.connect((HOST_TB, PORT_TB))
+      
+            s2.send(data)
 
     print('received: ', data)
     if data == 0:
@@ -44,12 +62,13 @@ while True:
         #key_press = 'w'
         #key_map.press_w()
         #key_map.move_mouse_up()
-        press.up_arrow()
-        print('W')
+        #press.up_arrow()
+        print('R(W)')
     elif data == 4:
         #key_press = 'w, a, s, d'
         #key_map.press_uppercut()
-        print('R')
+        press.up_arrow()
+        print('W(R)')
 
 
 

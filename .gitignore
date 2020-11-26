@@ -3,5 +3,7 @@
 *.log
 __pycache__
 *.pkl
+!pac_man.pkl
 *.h5
 *.keras
+.ipynb_checkpoints

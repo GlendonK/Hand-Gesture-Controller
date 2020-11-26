@@ -1,4 +1,4 @@
-
+'''
 import socket
 
 
@@ -20,8 +20,27 @@ while True:
     
     print('received: ', hostdata)
 s1.close()
+'''
 
+import socket
+import pickle
+import mlsocket
+import key_map as press
 
-#data = s.recv(1024)
+HOST = '192.168.43.10'
+PORT = 3000
 
-#print('received: ', repr(data))
+# listen for the data to be sent over
+while True:
+    
+    with mlsocket.MLSocket() as s:
+        s.bind((HOST, PORT))
+       
+        s.listen()
+        conn, address = s.accept()
+
+        with conn:
+            data = conn.recv(1024)
+            print("thingsboard received: ",data)
+        
+        

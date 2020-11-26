@@ -121,7 +121,7 @@ int main(void)
     FILE *fp;
     // opening an existing file
     printf("Opening the file test.c in write mode");
-    fp = fopen("left.csv", "a");
+    fp = fopen("up1.csv", "a");
     
     int i = 0;
     int j = 0;
@@ -130,10 +130,10 @@ int main(void)
     for (j; j < 100; j++)
     {
         // writing in the file
-        printf("\nstart3.........\n");
+        /*printf("\nstart3.........\n");
 	sleep(1);
 	printf("\nstart2.........\n");
-        sleep(1);
+        sleep(1);*/
 	printf("\nstart1.........\n");
         sleep(1);
         i = 0;

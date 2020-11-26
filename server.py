@@ -82,8 +82,7 @@ while True:
 
     data = connection.recv(1024)
 
-    if data:
-        send(data)
+    send(data)
         
     print('received: ', data)
 s.close()

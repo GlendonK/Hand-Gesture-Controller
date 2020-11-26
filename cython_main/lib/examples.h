@@ -48,6 +48,15 @@
 #define CTRL_REG2_G 0x11
 #define CTRL_REG4_M 0x23
 
+//LED
+#define FILEPATH "/dev/i2c-1"
+#define NUM_WORDS 64
+#define FILESIZE (NUM_WORDS * sizeof(uint16_t))
+
+#define RGB565_RED 0xF800
+#define GREEN 0x07E0
+
 void hello(const char *name);
 float* dataReader(void);
+void led(char data[6]);
 #endif

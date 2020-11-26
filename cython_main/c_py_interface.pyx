@@ -45,7 +45,7 @@ cdef class ArrayWrapper:
                                                np.NPY_FLOAT, self.data_ptr)
         return ndarray
 
-    def __dealloc__(self):
+    def deallo_(self):
         """ Frees the array. This is called by Python when all the
         references to the object are gone. """
         print("freeing mem")
@@ -72,3 +72,4 @@ def py_dataReader():
 
 
     return ndarray
+

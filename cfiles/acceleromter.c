@@ -8,7 +8,7 @@
 #include <sys/ioctl.h>
 #include <time.h>
 
-#define DEV_ID 0x1c
+#define DEV_ID 0x6a
 #define DEV_PATH "/dev/i2c-1"
 
 // Accelerometer addresses
@@ -77,7 +77,7 @@ int main(void)
     }
 
     /* check we are who we should be */
-    if (i2c_smbus_read_byte_data(fd, WHO_AM_I) != 0x3d)
+    if (i2c_smbus_read_byte_data(fd, WHO_AM_I) != 0x68)
     {
         printf("%x\n", (i2c_smbus_read_byte_data(fd, WHO_AM_I)));
         close(fd);
