@@ -10,19 +10,18 @@
 
 #include <fcntl.h>
 
-//#include <i2c/smbus.h>
+//#include <i2c/smbus.h> //needed for new i2c ver
 
 #include <sys/ioctl.h>
 
 #include <time.h>
 
-#include "examples.h"
+#include "sensors.h"
 
 
 
-/* im so sorry this have to be global to pass to python 
-    and i cant free it as it needs to be read by other py functions*/
-float res[60];
+
+float res[60]; // data stored here
 
 float *dataReader(void)
 
@@ -107,29 +106,31 @@ float *dataReader(void)
 
     //gyro
 
-    i2c_smbus_write_byte_data(fdg, CTRL_REG1_G, 0b11000011);
+    i2c_smbus_write_byte_data(fdg, CTRL_REG1_G, 0b11000011); //output data rate = 952hz, cutoff - 100hz
 
-    i2c_smbus_write_byte_data(fdg, CTRL_REG4, 0b00111000);
+    i2c_smbus_write_byte_data(fdg, CTRL_REG4, 0b00111000); // enable gyro x y z
 
-    i2c_smbus_write_byte_data(fdg, CTRL_REG3_G, 0b01000000);
+    i2c_smbus_write_byte_data(fdg, CTRL_REG3_G, 0b01000000); // high pass filter enabled
 
     //i2c_smbus_write_byte_data(fd, CTRL_REG2_G, 0b00000011);
 
-    i2c_smbus_write_byte_data(fdg, CTRL_REG2_G, 0b00000000);
+    //i2c_smbus_write_byte_data(fdg, CTRL_REG2_G, 0b00000000); 
 
-    i2c_smbus_write_byte_data(fda, CTRL_REG4_M, 0b00001000);
+    i2c_smbus_write_byte_data(fda, CTRL_REG4_M, 0b00001000); // high-performace mode
 
-    while (i < 60)
+    while (i < 60) /* 60 data will be read, 10 accelerometer x,y,z and 10 gyro x,y,z*/
 
     {
 
-        // LSL 8 and 'OR' to append Lo behind of Hi
-
-        uint8_t xLo = i2c_smbus_read_byte_data(fda, OUT_X_L_A);
+        
+        /* read output from the accelerometer registers */
+        uint8_t xLo = i2c_smbus_read_byte_data(fda, OUT_X_L_A); 
 
         uint8_t yLo = i2c_smbus_read_byte_data(fda, OUT_Y_L_A);
 
         uint8_t zLo = i2c_smbus_read_byte_data(fda, OUT_Z_L_A);
+        
+        /* LSL 8 and 'OR' to append Lo behind of Hi */
 
         int16_t xHi = ((int16_t)i2c_smbus_read_byte_data(fda, OUT_X_H_A)) << 8;
 
@@ -142,6 +143,8 @@ float *dataReader(void)
         int16_t accYTotal = (yHi | yLo);
 
         int16_t accZTotal = (zHi | zLo);
+        
+        /* to set 2^15 as 0, below 2^15 as negative value, above 2^15 as positive values*/
 
         if (xHi > 32767)
 
@@ -164,7 +167,9 @@ float *dataReader(void)
             zHi = zHi - 65535;
         }
 
-       res[i] = (float)((accXTotal)*ACCEL_MG_LSB_2G / 1000);
+        /* conversion for raw data */
+        
+        res[i] = (float)((accXTotal)*ACCEL_MG_LSB_2G / 1000);
 
         printf("acc_x: %f\n", res[i]);
 
@@ -183,6 +188,8 @@ float *dataReader(void)
         printf("\n");
 
         i++;
+        
+        /*output for gyro data */
 
         uint8_t gxLo = i2c_smbus_read_byte_data(fdg, OUT_X_L_G);
 
@@ -201,6 +208,8 @@ float *dataReader(void)
         int16_t ytotal = (gyHi | gyLo);
 
         int16_t ztotal = (gzHi | gzLo);
+        
+        /* to set 2^15 as 0, below 2^15 as negative value, above 2^15 as positive values*/
 
         if (xtotal > 32767)
 
@@ -222,6 +231,8 @@ float *dataReader(void)
 
             ztotal = ztotal - 65535;
         }
+        
+        /* conversion for raw data in to 'g' units*/
 
         res[i] = (float)(xtotal * GYRO_DPS_DIGIT_245DPS / 1000) * GRAVITY;
 
@@ -245,9 +256,9 @@ float *dataReader(void)
 
         printf("%d", i);
 
-       // usleep(2500);
+       
 
-    } //printf("\n THE res[i] IS: %f\n",res[60]);
+    } 
 
     close(fda);
 

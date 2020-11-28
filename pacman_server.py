@@ -52,7 +52,6 @@ while True:
     if data == 0:
         key_press = 's'
         key_map.press_s()
-        time.sleep(0.1)
         #key_map.move_mouse_down()
         #key_map.down_arrow()
         #key_map.PressKey(S)
@@ -63,20 +62,19 @@ while True:
     elif data == 1:
         key_press = 'a'
         key_map.press_a()
-        time.sleep(0.1)
-        #key_map.move_mouse_left()
+                #key_map.move_mouse_left()
         #key_map.left_arrow()
         #key_map.PressKey(A)
         #key_map.ReleaseKey(A)
         print('1')
-        time.sleep(0.1)
+        
     elif data == 2:
         key_press = 'd'
         #key_map.move_mouse_right()
         #key_map.press_d()
-        #key_map.right_arrow()
+        key_map.press_uppercut()
         print('2')
-        time.sleep(0.1)
+        
 
     elif data == 3:
         #key_press = 'w'
@@ -89,7 +87,6 @@ while True:
         #key_press = 'w'
         #key_map.press_uppercut()
         key_map.press_d()
-        time.sleep(0.1)
         #key_map.PressKey(D)
         #key_map.ReleaseKey(D)
 
@@ -99,7 +96,6 @@ while True:
         #key_map.press_uppercut()
         #key_map.up_arrow()
         key_map.press_w()
-        time.sleep(0.1)
         #key_map.PressKey(W)
         #time.sleep(0.1)
         #key_map.ReleaseKey(W)

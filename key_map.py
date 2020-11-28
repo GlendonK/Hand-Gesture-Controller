@@ -2,11 +2,11 @@
 import mouse
 import timeit
 #import loadModel
-#import pyautogui as key
+import pyautogui as keyboard
 #from pynput.keyboard import Key, Controller
 #import pydirectinput as key
-from pynput.keyboard import Key, Controller
-keyboard = Controller()
+#from pynput.keyboard import Key, Controller
+#keyboard = Controller()
 def press_w():
     #keyboard.press_and_release('w')
     keyboard.press('w')
@@ -28,7 +28,7 @@ def press_d():
 
 
 def press_uppercut():
-    keyboard.press_and_release('w, a, s, d')
+    keyboard.press('v')
 
 
 def up_arrow():

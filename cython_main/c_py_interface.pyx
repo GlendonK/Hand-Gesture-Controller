@@ -1,4 +1,5 @@
-cdef extern from "examples.h":
+# Reference the C sensors function
+cdef extern from "sensors.h":
     float *dataReader()
 
 from libc.stdlib cimport free
@@ -44,14 +45,7 @@ cdef class ArrayWrapper:
         ndarray = np.PyArray_SimpleNewFromData(1, shape,
                                                np.NPY_FLOAT, self.data_ptr)
         return ndarray
-
-    def deallo_(self):
-        """ Frees the array. This is called by Python when all the
-        references to the object are gone. """
-        print("freeing mem")
-        free(<void*>self.data_ptr)
-
-
+    
 def py_dataReader():
     """ Python binding of the 'compute' function in 'c_code.c' that does
         not copy the data allocated in C.
@@ -72,9 +66,9 @@ def py_dataReader():
 
 
     return ndarray
-
-cdef extern from "examples.h":
+# Reference LED C function
+cdef extern from "sensors.h":
     int led(int data)
-
+# Python function to run C LED function
 def py_led(data):
     led(data)

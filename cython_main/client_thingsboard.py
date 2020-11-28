@@ -1,12 +1,8 @@
-
 import os
 import time
 import sys
 import paho.mqtt.client as mqtt
 import json
-from random import randrange
-import socket
-import pickle
 import mlsocket
 
 HOST = '192.168.43.10'
@@ -15,8 +11,7 @@ THINGSBOARD_HOST = '129.126.163.157'
 ACCESS_TOKEN = 'JioordtwqlLbge2BvNTZ'
 topic = "v1/devices/me/telemetry"
 
-# Data capture and upload interval in seconds. Less interval will eventually hang the DHT22.
-INTERVAL=1
+
 
 next_reading = time.time() 
 
@@ -38,35 +33,35 @@ def sendData(dataReceived):
         data_out=json.dumps(data) # create JSON object
         print("publish topic",topic, "data out= ", data_out)
         client.publish(topic,data_out,0)
-        client.loop()
+        
     elif dataReceived == 0:
         data["direction"] = "down"
         data["down"] = 1
         data_out=json.dumps(data) # create JSON object
         print("publish topic",topic, "data out= ", data_out)
         client.publish(topic,data_out,0)
-        client.loop()
+        
     elif dataReceived == 1:
         data["direction"] = "left"
         data["left"] = 1
         data_out=json.dumps(data) # create JSON object
         print("publish topic",topic, "data out= ", data_out)
         client.publish(topic,data_out,0)
-        client.loop()
+        
     elif dataReceived == 2:
         data["direction"] = "right"
         data["right"] = 1
         data_out=json.dumps(data) # create JSON object
         print("publish topic",topic, "data out= ", data_out)
         client.publish(topic,data_out,0)
-        client.loop()
+        
     elif dataReceived == 3:
         data["direction"] = "rest"
         data["rest"] = 1
         data_out=json.dumps(data) # create JSON object
         print("publish topic",topic, "data out= ", data_out)
         client.publish(topic,data_out,0)
-        client.loop()
+        
 
 
 

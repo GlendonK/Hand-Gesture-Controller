@@ -1,11 +1,11 @@
 CC = gcc
 
-default: libexamples.a
+default: libsensors.a
 
-libexamples.a: examples.o
+libsensors.a: sensors.o led_matrix.o
 	ar rcs $@ $^
     
-examples.o: examples.c examples.h
+examples.o: examples.c examples.h led_matrix.o
 	$(CC) -c $<
 
 clean:
