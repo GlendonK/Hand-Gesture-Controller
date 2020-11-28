@@ -73,3 +73,8 @@ def py_dataReader():
 
     return ndarray
 
+cdef extern from "examples.h":
+    int led(int data)
+
+def py_led(data):
+    led(data)

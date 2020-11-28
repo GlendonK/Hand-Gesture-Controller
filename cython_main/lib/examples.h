@@ -58,5 +58,5 @@
 
 void hello(const char *name);
 float* dataReader(void);
-void led(char data[6]);
+int led(int data);
 #endif

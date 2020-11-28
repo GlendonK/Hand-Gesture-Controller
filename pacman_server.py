@@ -2,16 +2,24 @@
 ### THIS SERVER IS FOR pac_man.pkl model
 
 
-
-    
-
-
-
-
+import flask
+from flask.json import jsonify
+import requests
 import socket
 import pickle
 import mlsocket
-import key_map as press
+import time
+import key_map
+
+UP = 0x49
+DOWN = 0x50
+RIGHT = 0x4D
+LEFT = 0x4B
+
+W = 0x11
+A = 0x1E
+S = 0x1F
+D = 0x20
 
 HOST = '192.168.43.71'
 PORT = 5000
@@ -21,6 +29,7 @@ PORT_TB = 1234
 
 
 # listen for the data to be sent over
+counter = 0
 while True:
     
     with mlsocket.MLSocket() as s:
@@ -32,44 +41,70 @@ while True:
         with conn:
             data = conn.recv(1024)
         
-        with mlsocket.MLSocket() as s2:
+        '''with mlsocket.MLSocket() as s2:
             s2.connect((HOST_TB, PORT_TB))
-      
-            s2.send(data)
+        
+            #s2.sendall(data)'''
+            
+                
 
     print('received: ', data)
     if data == 0:
-        #key_press = 's'
-        #key_map.press_s()
+        key_press = 's'
+        key_map.press_s()
+        time.sleep(0.1)
         #key_map.move_mouse_down()
-        press.down_arrow()
+        #key_map.down_arrow()
+        #key_map.PressKey(S)
+        #key_map.ReleaseKey(S)
         
-        print('S')
+        print('0')
 
     elif data == 1:
-        #key_press = 'a'
-        #key_map.press_a()
+        key_press = 'a'
+        key_map.press_a()
+        time.sleep(0.1)
         #key_map.move_mouse_left()
-        press.left_arrow()
-        print('A')
+        #key_map.left_arrow()
+        #key_map.PressKey(A)
+        #key_map.ReleaseKey(A)
+        print('1')
+        time.sleep(0.1)
     elif data == 2:
-        #key_press = 'd'
+        key_press = 'd'
         #key_map.move_mouse_right()
         #key_map.press_d()
-        press.right_arrow()
-        print('D')
+        #key_map.right_arrow()
+        print('2')
+        time.sleep(0.1)
+
     elif data == 3:
         #key_press = 'w'
         #key_map.press_w()
         #key_map.move_mouse_up()
-        #press.up_arrow()
-        print('R(W)')
+        #key_map.up_arrow()
+        print('3')
+        #time.sleep(0.1)
     elif data == 4:
-        #key_press = 'w, a, s, d'
+        #key_press = 'w'
         #key_map.press_uppercut()
-        press.up_arrow()
-        print('W(R)')
+        key_map.press_d()
+        time.sleep(0.1)
+        #key_map.PressKey(D)
+        #key_map.ReleaseKey(D)
 
+        print('4')
+    elif data == 5:
+        #key_press = 'w'
+        #key_map.press_uppercut()
+        #key_map.up_arrow()
+        key_map.press_w()
+        time.sleep(0.1)
+        #key_map.PressKey(W)
+        #time.sleep(0.1)
+        #key_map.ReleaseKey(W)
+
+        print('5')
 
 
 
