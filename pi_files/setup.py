@@ -2,7 +2,7 @@ from distutils.core import setup
 from distutils.extension import Extension
 from Cython.Build import cythonize
 
-# file to build the cython
+# file to build the cython.
 
 examples_extension = Extension(
     name="C_py_interface",

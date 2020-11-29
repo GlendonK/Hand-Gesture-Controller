@@ -61,6 +61,13 @@ def sendData(dataReceived):
         data_out=json.dumps(data) # create JSON object
         #print("publish topic",topic, "data out= ", data_out)
         client.publish(topic,data_out,0)
+
+    elif dataReceived == 2:
+        data["direction"] = "punch"
+        data["rest"] = 1
+        data_out=json.dumps(data) # create JSON object
+        #print("publish topic",topic, "data out= ", data_out)
+        client.publish(topic,data_out,0)
         
 
 
