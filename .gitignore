@@ -1,3 +1,4 @@
+*
 .DS_Store
 *.ipynb
 *.log
@@ -6,4 +7,8 @@ __pycache__
 !pac_man.pkl
 *.h5
 *.keras
-.ipynb_checkpoints
+.ipynb_checkpoint
+!pi_files
+!pacman_server.py
+!pacman_train.py
+!newtrainingdata

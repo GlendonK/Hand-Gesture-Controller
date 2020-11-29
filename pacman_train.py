@@ -108,7 +108,7 @@ print(model.score(test_X, test_y))
 
 # save the model
 import pickle 
-filename = "pac_man.pkl"  
+filename = "del.pkl"  
 
 with open(filename, 'wb') as file:  
     pickle.dump(model, file)

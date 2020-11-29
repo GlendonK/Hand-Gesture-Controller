@@ -2,143 +2,95 @@
 import mouse
 import timeit
 #import loadModel
-import pyautogui as keyboard
+import pyautogui as key
 #from pynput.keyboard import Key, Controller
-#import pydirectinput as key
+import pydirectinput as keyboard
 #from pynput.keyboard import Key, Controller
 #keyboard = Controller()
-def press_w():
+def fighting_w():
     #keyboard.press_and_release('w')
-    keyboard.press('w')
+    keyboard.keyDown('w')
 
-
-def press_a():
+    
+def fighting_a():
     #keyboard.press_and_release('a')
-    keyboard.press('a')
+    keyboard.keyDown('a')
 
 
-def press_s():
+def fighting_s():
     # keyboard.press_and_release('s')
-    keyboard.press('s')
+    keyboard.keyDown('s')
 
 
-def press_d():
+def fighting_d():
+    # keyboard.press_and_release('d') 
+    keyboard.keyDown('d')
+
+
+def fighting_punch():  
+    keyboard.keyDown('j')
+
+def fighting_rest():
     # keyboard.press_and_release('d')
-    keyboard.press('d')
+    keyboard.keyUp('w')
+    keyboard.keyUp('a')
+    keyboard.keyUp('s')
+    keyboard.keyUp('d')
+    keyboard.keyUp('j')    
 
 
-def press_uppercut():
-    keyboard.press('v')
 
-
-def up_arrow():
+def snake_up_arrow():
     # keyboard.press_and_release('up')
-    key.press('up', _pause=False)
+    key.keyUp('up')
+    key.keyUp('down')
+    key.keyUp('left')
+    key.keyUp('right')
+    key.keyDown('up')
 
 
-def left_arrow():
+def snake_left_arrow():
     # keyboard.press_and_release('left')
-    key.press('left', _pause=False)
+    key.keyUp('up')
+    key.keyUp('down')
+    key.keyUp('left')
+    key.keyUp('right')
+    key.keyDown('left')
 
 
-def right_arrow():
+def snake_right_arrow():
     # keyboard.press_and_release('right')
-    key.press('right', _pause=False)
+    key.keyUp('up')
+    key.keyUp('down')
+    key.keyUp('left')
+    key.keyUp('right')
+    key.keyDown('right')
 
 
-def down_arrow():
+def snake_down_arrow():
     # keyboard.press_and_release('down')
-    key.press('down', _pause=False)
+    key.keyUp('up')
+    key.keyUp('down')
+    key.keyUp('left')
+    key.keyUp('right')
+    key.keyDown('down')
 
 
-def left_click():
-    mouse.click('left')
+def pacman_down():
+    # keyboard.press_and_release('down')
+    key.press('down')
+
+def pacman_up():
+    # keyboard.press_and_release('down')
+    key.press('up')
+
+def pacman_left():
+    # keyboard.press_and_release('down')
+    key.press('left')
+
+def pacman_right():
+    # keyboard.press_and_release('down')
+    key.press('right')
 
 
-def right_click():
-    mouse.click('right')
 
-
-def move_mouse(x, y):
-    mouse.move(x, y, absolute=False, duration=0)
-
-
-def move_mouse_left():
-    move_mouse(-20, 0)
-
-
-def move_mouse_right():
-    move_mouse(20, 0)
-
-
-def move_mouse_up():
-    move_mouse(0, -20)
-
-
-def move_mouse_down():
-    move_mouse(0, 20)
-
-
-'''import ctypes
-import time
-
-SendInput = ctypes.windll.user32.SendInput
-
-
-W = 0x11
-A = 0x1E
-S = 0x1F
-D = 0x20
-
-UP = 0xC8
-DOWN = 0xD0
-RIGHT = 0xCD
-LEFT = 0xCB
-
-# C struct redefinitions 
-PUL = ctypes.POINTER(ctypes.c_ulong)
-class KeyBdInput(ctypes.Structure):
-    _fields_ = [("wVk", ctypes.c_ushort),
-                ("wScan", ctypes.c_ushort),
-                ("dwFlags", ctypes.c_ulong),
-                ("time", ctypes.c_ulong),
-                ("dwExtraInfo", PUL)]
-
-class HardwareInput(ctypes.Structure):
-    _fields_ = [("uMsg", ctypes.c_ulong),
-                ("wParamL", ctypes.c_short),
-                ("wParamH", ctypes.c_ushort)]
-
-class MouseInput(ctypes.Structure):
-    _fields_ = [("dx", ctypes.c_long),
-                ("dy", ctypes.c_long),
-                ("mouseData", ctypes.c_ulong),
-                ("dwFlags", ctypes.c_ulong),
-                ("time",ctypes.c_ulong),
-                ("dwExtraInfo", PUL)]
-
-class Input_I(ctypes.Union):
-    _fields_ = [("ki", KeyBdInput),
-                 ("mi", MouseInput),
-                 ("hi", HardwareInput)]
-
-class Input(ctypes.Structure):
-    _fields_ = [("type", ctypes.c_ulong),
-                ("ii", Input_I)]
-
-# Actuals Functions
-
-def PressKey(hexKeyCode):
-    extra = ctypes.c_ulong(0)
-    ii_ = Input_I()
-    ii_.ki = KeyBdInput( 0, hexKeyCode, 0x0008, 0, ctypes.pointer(extra) )
-    x = Input( ctypes.c_ulong(1), ii_ )
-    ctypes.windll.user32.SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
-
-def ReleaseKey(hexKeyCode):
-    extra = ctypes.c_ulong(0)
-    ii_ = Input_I()
-    ii_.ki = KeyBdInput( 0, hexKeyCode, 0x0008 | 0x0002, 0, ctypes.pointer(extra) )
-    x = Input( ctypes.c_ulong(1), ii_ )
-    ctypes.windll.user32.SendInput(1, ctypes.pointer(x), ctypes.sizeof(x))
-'''
