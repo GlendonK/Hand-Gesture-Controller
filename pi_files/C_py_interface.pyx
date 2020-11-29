@@ -46,7 +46,7 @@ cdef class ArrayWrapper:
                                                np.NPY_FLOAT, self.data_ptr)
         return ndarray
     
-def py_dataReader():
+def py_data_reader():
     """ Python binding of the 'compute' function in 'c_code.c' that does
         not copy the data allocated in C.
     """

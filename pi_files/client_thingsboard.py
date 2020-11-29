@@ -11,8 +11,6 @@ ACCESS_TOKEN = 'JioordtwqlLbge2BvNTZ'
 topic = "v1/devices/me/telemetry"
 
 
-
-
 client = mqtt.Client()
 
 # Set access token
@@ -25,7 +23,7 @@ client.connect(THINGSBOARD_HOST, 1883, 60)
 client.loop_start()
 
 #function to deteremine what data to send to thingsboard
-def sendData(dataReceived):
+def send+data(dataReceived):
     data=dict() #create dictionary to store key:value 
     if dataReceived == 4:
         data["direction"] = "up"
