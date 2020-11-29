@@ -1,8 +1,1 @@
-*
-!.gitignore
-!Hand-Gesture-Controller/pi_files/*
-!Hand-Gesture-Controller/pc_files/*
-!__pycache__/*
-!README.md
-!pac_man.pkl
-!Hand-Gesture-Controller/newtrainingdata/*
+.DS_Store
