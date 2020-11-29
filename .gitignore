@@ -1,14 +1,3 @@
 *
-.DS_Store
-*.ipynb
-*.log
-__pycache__
-*.pkl
-!pac_man.pkl
-*.h5
-*.keras
-.ipynb_checkpoint
-!pi_files
-!pacman_server.py
-!pacman_train.py
-!newtrainingdata
+!/pi_files
+!/pc_files
