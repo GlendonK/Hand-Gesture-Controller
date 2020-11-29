@@ -1,5 +1,0 @@
-*
-!.gitignore
-!/Hand-Gesture-Controller/pi_files
-!/Hand-Gesture-Controller/pc_files
-*.py
