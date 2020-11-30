@@ -33,7 +33,7 @@ make data into time series
 each direction takes 60 datas of xyz from gyro and accelerometer
 '''
 print("incrementing...")
-def increment_Ten(df):
+def increment_ten(df):
     count=1
     # shift the data from 10 rows into 60 columns
     df['acc_x+1'] = df['acc_x'].shift(-1)
@@ -57,10 +57,10 @@ def increment_Ten(df):
         count +=1
         
     return df
-df = increment_Ten(df)
+df = increment_ten(df)
 print("dropping...")
 # this loop is to drop the 8 rows of data that are shifted into columns
-def drop_Ten(df):
+def drop_ten(df):
     count = 0
     num = 1
     # drop by numer of rows - remainder after drop - 9
@@ -72,7 +72,7 @@ def drop_Ten(df):
             num +=1
     df = df.dropna()
     return df
-df = drop_Ten(df)
+df = drop_ten(df)
 # add headers for the new columns
 print("appending features...")
 features= ['acc_x','acc_y','acc_z','gyro_x','gyro_y', 'gyro_z']

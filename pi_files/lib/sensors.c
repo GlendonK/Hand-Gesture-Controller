@@ -15,8 +15,8 @@ float *dataReader(void)
 
 {
 
-    int fd = 0; // file descriptor to identify file opened
-    int i = 0;
+    uint8_t fd = 0; // file descriptor to identify file opened
+    volatile uint8_t i = 10;
 
     /* open i2c comms */
     if ((fd = open(I2C_PATH, O_RDWR)) < 0)
@@ -61,7 +61,7 @@ float *dataReader(void)
     i2c_smbus_write_byte_data(fd, CTRL_REG3_G, 0b01000000); // high pass filter enabled
     i2c_smbus_write_byte_data(fd, CTRL_REG4_M, 0b00001000); // high-performace mode
 
-    while (i < 60) /* 60 data will be read, 10 accelerometer x,y,z and 10 gyro x,y,z*/
+    while (i > 0) /* 60 data will be read, 10 accelerometer x,y,z and 10 gyro x,y,z*/
     {
         /* read output from the accelerometer registers */
         uint8_t xLo = i2c_smbus_read_byte_data(fd, OUT_X_L_A);
@@ -89,17 +89,17 @@ float *dataReader(void)
             zHi = zHi - 65535;
         }
 
-        /* conversion for raw data */
+        /* conversion for raw data mg/LSB to g/LSB*/
         res[i] = (float)((accXTotal)*ACCEL_MG_LSB_2G / 1000);
         //printf("acc_x: %f\n", res[i]);
-        i++;
+        
         res[i] = (float)((accYTotal)*ACCEL_MG_LSB_2G / 1000);
         //printf("acc_yy: %f\n", res[i]);
-        i++;
+        
         res[i] = (float)((accZTotal)*ACCEL_MG_LSB_2G / 1000);
         //printf("acc_z: %f\n", res[i]);
         //printf("\n");
-        i++;
+        
 
         /*output for gyro data */
         uint8_t gxLo = i2c_smbus_read_byte_data(fd, OUT_X_L_G);
@@ -126,17 +126,17 @@ float *dataReader(void)
             ztotal = ztotal - 65535;
         }
 
-        /* conversion for raw data in to 'g' units*/
+        /* conversion for raw data mdps/LSB to dpsg(degree per sec * 9.81m/s^2) */
         res[i] = (float)(xtotal * GYRO_DPS_DIGIT_245DPS / 1000) * GRAVITY;
         //printf("gy_x: %f\n", res[i]);
-        i++;
+        
         res[i] = (float)(ytotal * GYRO_DPS_DIGIT_245DPS / 1000) * GRAVITY;
         //printf("gy_y: %f\n", res[i]);
-        i++;
+        
         res[i] = (float)(ztotal * GYRO_DPS_DIGIT_245DPS / 1000) * GRAVITY;
         //printf("gy_Z: %f\n", res[i]);
         //printf("\n");
-        i++;
+        i--;
         //printf("%d", i);
     }
 
